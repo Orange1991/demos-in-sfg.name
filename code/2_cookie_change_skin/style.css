@@ -1,0 +1,18 @@
+.content {
+  margin-top: 20px;
+  padding: 40px;
+  background-color: #000;
+  color: #fff;
+}
+
+.red .content {
+  background-color: #f00;
+}
+
+.yellow .content {
+  background-color: #ff0;
+}
+
+.blue .content {
+  background-color: #00f;
+}
