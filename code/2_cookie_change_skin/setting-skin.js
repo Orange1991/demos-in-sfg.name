@@ -38,7 +38,7 @@ utils.loadSkin = function () {
  * @param {string} skin, The skin class name
  */
 utils.setSkin = function (skin) {
-    utils.setCookie(utils.COOKIE_KEY.SKIN, skin);
+    utils.setCookie(utils.COOKIE_KEY.SKIN, skin, 365);
     utils.loadSkin(); // change the skin of current page
 };
 
