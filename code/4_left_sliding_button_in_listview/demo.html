@@ -19,7 +19,8 @@ $(document).ready(function(e) {
     var lastX, lastXForMobile;
 
     // 用于记录被按下的对象
-    var pressedObj;
+    var pressedObj;  // 当前左滑的对象
+    var lastLeftObj; // 上一个左滑的对象
 
     // 用于记录按下的点
     var start;
@@ -56,8 +57,12 @@ $(document).ready(function(e) {
             var diffX = e.changedTouches[0].pageX - lastXForMobile;
             if (diffX < -150) {
                 $(pressedObj).animate({marginLeft:"-132px"}, 500); // 左滑
+                lastLeftObj && lastLeftObj != pressedObj && 
+                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
+                lastLeftObj = pressedObj; // 记录上一个左滑的对象
             } else if (diffX > 150) {
                 $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
+                lastLeftObj = null; // 清空上一个左滑的对象
             }
         });
     }
@@ -73,8 +78,12 @@ $(document).ready(function(e) {
             var diffX = e.clientX - lastX;
             if (diffX < -150) {
                 $(pressedObj).animate({marginLeft:"-132px"}, 500); // 左滑
+                lastLeftObj && lastLeftObj != pressedObj && 
+                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 已经左滑状态的按钮右滑
+                lastLeftObj = pressedObj; // 记录上一个左滑的对象
             } else if (diffX > 150) {
                 $(pressedObj).animate({marginLeft:"0"}, 500); // 右滑
+                lastLeftObj = null; // 清空上一个左滑的对象
             }
         });
     }
