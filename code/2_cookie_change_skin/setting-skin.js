@@ -50,6 +50,8 @@ utils.setSkin = function (skin) {
  * @param {string||object||number|...} val
  */
 utils.setCookie = function (key, val) {
+    key = escape(key);
+    val = escape(val);
     document.cookie = key + "=" + val + ";path=/";
 };
 
@@ -60,6 +62,7 @@ utils.setCookie = function (key, val) {
  * @returns {Array<string>} 一系列cookie
  */
 utils.getCookies = function (name) {
+  name = escape(name);
   var values = [];
   if(!document.cookie == ''){ 
     //用spilt('; ')切割所有cookie保存在数组arrCookie中 
@@ -68,7 +71,7 @@ utils.getCookies = function (name) {
     var keyValue;
     for(var i=0; i<arrLength; ++i) {
       keyValue = arrCookie[i].split('=');
-      if (unescape(keyValue[0]) == name) {
+      if (keyValue[0] == name) {
           values.push(unescape(keyValue[1]));
       }
     } 
