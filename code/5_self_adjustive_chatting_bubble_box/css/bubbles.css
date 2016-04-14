@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #efefef;
+  font-family: 'Microsoft Yahei', sans-serif;
+  font-size: 14px;
+  color: #835426;
+}
+
+.wrapper {
+  width: 400px;
+  float: left;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.chat-list {
+  width: 100%;
+}
+
+.chat-item {
+  display: block;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.chat-item.left {
+  float: left;
+}
+
+.chat-item.right {
+  float: right;
+}
+
+.chat-item:after {
+  content: '';
+  display: block;
+  clear: both;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.chat-avatar {
+  display: inline-block;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid #cdcdcd;
+}
+
+.bubble-item {
+  display: inline-block;
+  max-width: 300px;
+}
+
+.chat-item.left .chat-avatar,
+.chat-item.left .bubble-item {
+  float: left;
+}
+
+.chat-item.right .chat-avatar,
+.chat-item.right .bubble-item {
+  float: right;
+}
+
+.chat-item.left .chat-avatar {
+  margin-right: 10px;
+}
+
+.chat-item.right .chat-avatar {
+  margin-left: 10px;
+}
+
+/**
+ * 气泡关键代码
+ */
+.bubble-item {
+  position: relative;
+}
+
+.cell {
+  position: absolute;
+}
+
+.bubble-bear .cell-1,
+.bubble-bear .cell-3,
+.bubble-bear .cell-5,
+.bubble-bear .cell-7 {
+  background: url(../img/bubble-bear.png) no-repeat;
+}
+
+.chat-content {
+  position: relative;
+  z-index: 10;
+}
+
+.left .bubble-bear .chat-content {
+  margin: 17px 32px 15px 15px;
+  display: inline-block;
+  background-color: #fff8ef;
+}
+
+.left .bubble-bear .cell-1 {
+  left: 0;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  background-position: -3px -10px;
+}
+
+.left .bubble-bear .cell-2 {
+  left: 20px;
+  top: 10px;
+  right: 20px;
+  height: 16px;
+  background-color: #fff8ef;
+  border-top: 1px solid #835426;
+}
+
+.left .bubble-bear .cell-3 {
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 28px;
+  background-position: -58px -4px;
+}
+
+.left .bubble-bear .cell-4 {
+  top: 28px;
+  right: 6px;
+  bottom: 10px;
+  width: 60px;
+  background-color: #fff8ef;
+  border-right: 1px solid #835426;
+}
+
+.left .bubble-bear .cell-5 {
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 16px;
+  background-position: -58px -50px;
+}
+
+.left .bubble-bear .cell-6 {
+  right: 60px;
+  bottom: 7px;
+  left: 20px;
+  height: 10px;
+  background-color: #fff8ef;
+  border-bottom: 1px solid #835426;
+}
+
+.left .bubble-bear .cell-7 {
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-position: -3px -46px;
+}
+
+.left .bubble-bear .cell-8 {
+  top: 25px;
+  bottom: 20px;
+  left: 4px;
+  width: 20px;
+  background-color: #fff8ef;
+  border-left: 1px solid #835426;
+}
+
+.right .bubble-bear .chat-content {
+  margin: 25px 15px 10px 32px;
+  display: inline-block;
+  background-color: #fff8ef;
+}
+
+.right .bubble-bear .cell-1 {
+  left: 2px;
+  top: 6px;
+  width: 60px;
+  height: 28px;
+  background-position: -124px -4px;
+}
+
+.right .bubble-bear .cell-2 {
+  left: 60px;
+  top: 16px;
+  right: 20px;
+  height: 16px;
+  background-color: #fff8ef;
+  border-top: 1px solid #835426;
+}
+
+.right .bubble-bear .cell-3 {
+  right: 0;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  background-position: -219px -8px;
+}
+
+.right .bubble-bear .cell-4 {
+  top: 28px;
+  right: 6px;
+  bottom: 16px;
+  width: 20px;
+  background-color: #fff8ef;
+  border-right: 1px solid #835426;
+}
+
+.right .bubble-bear .cell-5 {
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 16px;
+  background-position: -219px -43px;
+}
+
+.right .bubble-bear .cell-6 {
+  right: 20px;
+  bottom: 0;
+  left: 20px;
+  height: 10px;
+  background-color: #fff8ef;
+  border-bottom: 1px solid #835426;
+}
+
+.right .bubble-bear .cell-7 {
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 20px;
+  background-position: -122px -39px;
+}
+
+.right .bubble-bear .cell-8 {
+  top: 33px;
+  bottom: 20px;
+  left: 6px;
+  width: 60px;
+  background-color: #fff8ef;
+  border-left: 1px solid #835426;
+}
