@@ -88,14 +88,20 @@ body {
 .bubble-bear .cell-1,
 .bubble-bear .cell-3,
 .bubble-bear .cell-5,
-.bubble-bear .cell-7 {
-  background: url(../img/bubble-bear.png) no-repeat;
+.bubble-bear .cell-7,
+.bubble-dinosaur .cell-1,
+.bubble-dinosaur .cell-3,
+.bubble-dinosaur .cell-5,
+.bubble-dinosaur .cell-7 {
+  background: url(../img/bubbles.png) no-repeat;
 }
 
 .chat-content {
   position: relative;
   z-index: 10;
 }
+
+/* bear */
 
 .left .bubble-bear .chat-content {
   margin: 17px 32px 15px 15px;
@@ -113,7 +119,7 @@ body {
 
 .left .bubble-bear .cell-2 {
   left: 20px;
-  top: 10px;
+  top: 11px;
   right: 20px;
   height: 16px;
   background-color: #fff8ef;
@@ -147,7 +153,7 @@ body {
 
 .left .bubble-bear .cell-6 {
   right: 60px;
-  bottom: 7px;
+  bottom: 6px;
   left: 20px;
   height: 10px;
   background-color: #fff8ef;
@@ -172,14 +178,14 @@ body {
 }
 
 .right .bubble-bear .chat-content {
-  margin: 25px 15px 10px 32px;
+  margin: 18px 15px 8px 32px;
   display: inline-block;
   background-color: #fff8ef;
 }
 
 .right .bubble-bear .cell-1 {
   left: 2px;
-  top: 6px;
+  top: 0;
   width: 60px;
   height: 28px;
   background-position: -124px -4px;
@@ -187,7 +193,7 @@ body {
 
 .right .bubble-bear .cell-2 {
   left: 60px;
-  top: 16px;
+  top: 11px;
   right: 20px;
   height: 16px;
   background-color: #fff8ef;
@@ -196,14 +202,14 @@ body {
 
 .right .bubble-bear .cell-3 {
   right: 0;
-  top: 10px;
+  top: 5px;
   width: 20px;
   height: 20px;
   background-position: -219px -8px;
 }
 
 .right .bubble-bear .cell-4 {
-  top: 28px;
+  top: 23px;
   right: 6px;
   bottom: 16px;
   width: 20px;
@@ -233,14 +239,166 @@ body {
   bottom: 0;
   width: 40px;
   height: 20px;
-  background-position: -122px -39px;
+  background-position: -122px -40px;
 }
 
 .right .bubble-bear .cell-8 {
-  top: 33px;
+  top: 28px;
   bottom: 20px;
   left: 6px;
   width: 60px;
   background-color: #fff8ef;
   border-left: 1px solid #835426;
 }
+
+/* dinosaur */
+
+.left .bubble-dinosaur .chat-content {
+  margin: 17px 32px 10px 15px;
+  display: inline-block;
+  background-color: #8acc8e;
+  color: #030001;
+}
+
+.left .bubble-dinosaur .cell-1 {
+  left: 0;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  background-position: -3px -74px;
+}
+
+.left .bubble-dinosaur .cell-2 {
+  left: 20px;
+  top: 11px;
+  right: 20px;
+  height: 16px;
+  background-color: #8acc8e;
+  border-top: 1px solid #030001;
+}
+
+.left .bubble-dinosaur .cell-3 {
+  right: 0;
+  top: 0;
+  width: 70px;
+  height: 28px;
+  background-position: -48px -68px;
+}
+
+.left .bubble-dinosaur .cell-4 {
+  top: 28px;
+  right: 6px;
+  bottom: 10px;
+  width: 70px;
+  background-color: #8acc8e;
+  border-right: 1px solid #030001;
+}
+
+.left .bubble-dinosaur .cell-5 {
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 16px;
+  background-position: -55px -108px;
+}
+
+.left .bubble-dinosaur .cell-6 {
+  right: 60px;
+  bottom: 0;
+  left: 20px;
+  height: 10px;
+  background-color: #8acc8e;
+  border-bottom: 1px solid #030001;
+}
+
+.left .bubble-dinosaur .cell-7 {
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  background-position: -3px -104px;
+}
+
+.left .bubble-dinosaur .cell-8 {
+  top: 25px;
+  bottom: 20px;
+  left: 5px;
+  width: 20px;
+  background-color: #8acc8e;
+  border-left: 1px solid #030001;
+}
+
+.right .bubble-dinosaur .chat-content {
+  margin: 18px 15px 10px 38px;
+  display: inline-block;
+  background-color: #8acc8e;
+  color: #030001;
+}
+
+.right .bubble-dinosaur .cell-1 {
+  left: 2px;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background-position: -120px -68px;
+}
+
+.right .bubble-dinosaur .cell-2 {
+  left: 40px;
+  top: 10px;
+  right: 20px;
+  height: 16px;
+  background-color: #8acc8e;
+  border-top: 1px solid #030001;
+}
+
+.right .bubble-dinosaur .cell-3 {
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 26px;
+  background-position: -219px -70px;
+}
+
+.right .bubble-dinosaur .cell-4 {
+  top: 26px;
+  right: 8px;
+  bottom: 20px;
+  width: 20px;
+  background-color: #8acc8e;
+  border-right: 1px solid #030001;
+}
+
+.right .bubble-dinosaur .cell-5 {
+  right: 1px;
+  bottom: 0;
+  width: 20px;
+  height: 24px;
+  background-position: -218px -100px;
+}
+
+.right .bubble-dinosaur .cell-6 {
+  right: 20px;
+  bottom: 0;
+  left: 30px;
+  height: 10px;
+  background-color: #8acc8e;
+  border-bottom: 1px solid #030001;
+}
+
+.right .bubble-dinosaur .cell-7 {
+  left: 4px;
+  bottom: 0;
+  width: 40px;
+  height: 16px;
+  background-position: -122px -108px;
+}
+
+.right .bubble-dinosaur .cell-8 {
+  top: 33px;
+  bottom: 16px;
+  left: 12px;
+  width: 60px;
+  background-color: #8acc8e;
+  border-left: 1px solid #030001;
+} 
