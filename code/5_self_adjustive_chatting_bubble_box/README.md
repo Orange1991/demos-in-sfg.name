@@ -2,4 +2,4 @@
 
 目前支持的气泡
 
-![目前支持的气泡](5_self_adjustive_chatting_bubble_box/img/bubbles.png)
+![目前支持的气泡](img/bubbles.png)
