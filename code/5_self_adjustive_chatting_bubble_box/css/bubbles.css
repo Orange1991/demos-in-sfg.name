@@ -92,7 +92,11 @@ body {
 .bubble-dinosaur .cell-1,
 .bubble-dinosaur .cell-3,
 .bubble-dinosaur .cell-5,
-.bubble-dinosaur .cell-7 {
+.bubble-dinosaur .cell-7,
+.bubble-luffy .cell-1,
+.bubble-luffy .cell-3,
+.bubble-luffy .cell-5,
+.bubble-luffy .cell-7 {
   background: url(../img/bubbles.png) no-repeat;
 }
 
@@ -402,3 +406,44 @@ body {
   background-color: #8acc8e;
   border-left: 1px solid #030001;
 } 
+
+/* luffy */
+
+.left .bubble-luffy .chat-content,
+.right .bubble-luffy .chat-content{
+  background-color: #feefc8;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.left .bubble-luffy .chat-content {
+  margin: 20px 35px 10px 0;
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.left .bubble-luffy .cell-5 {
+  right: 0;
+  bottom: 0;
+  width: 50px;
+  height: 70px;
+  background-position: -5px -130px;
+  z-index: 10;
+}
+
+.right .bubble-luffy .chat-content {
+  margin: 20px 15px 10px 35px;
+  display: inline-block;
+  padding-left: 20px;
+}
+
+.right .bubble-luffy .cell-7 {
+  left: 4px;
+  bottom: 0;
+  width: 50px;
+  height: 70px;
+  background-position: -62px -130px;
+  z-index: 10;
+}
