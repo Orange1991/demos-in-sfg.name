@@ -16,9 +16,20 @@
           <p>
             <span class="step-purpose">Generate a random array.</span>
             Due to your browser's width, you'd better generate an array which have a size between <span class="min-size-container">3</span> and <span id="max-size-container"></span>.
-            You'd like to generate an array which have <input id="array-size"/> elements.
-            <button id="generate-array">Do it!</button>
+            You'd like to generate an array which have <input id="array-size" value="10"/> elements.
+            <button id="generate-array">Do it!</button> Also, choose an option to sort the arry in 
+            <label><input name="sort-order" id="rdo-ascending" type="radio" value="0" checked/>ascending</label> or 
+            <label><input name="sort-order" id="rdo-descending" type="radio" value="1"/>descending</label> order.
           </p>
+        </li>
+        <li>
+          <p>Now, we can play the annimation.</p>
+          <div class="actions">
+            <button id="btn-paly">Play</button>
+            <button id="btn-pause">Pause</button>
+            <button id="btn-next-round">Next Round</button>
+            <button id="btn-next-step">Next Step</button>
+          </div>
         </li>
       </ol>
     </div>

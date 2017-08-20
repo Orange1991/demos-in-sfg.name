@@ -15,6 +15,7 @@ html, body {
   padding: 20px;
   color: #fff;
   background-color: #000;
+  overflow: auto;
 }
 
 .action-bar {
@@ -33,4 +34,19 @@ html, body {
 #array-size {
   width: 3em;
   border: 1px solid yellow;
+}
+
+.anim-col {
+  position: absolute;
+  bottom: 0;
+  background-color: #009;
+  overflow: hidden;
+}
+
+.anim-col > p {
+  margin: 5px auto;
+  text-align: center;
+  line-height: 1em;
+  color: #fff;
+  overflow: hidden;
 }
