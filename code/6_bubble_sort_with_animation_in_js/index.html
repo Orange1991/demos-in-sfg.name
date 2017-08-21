@@ -9,7 +9,7 @@
       <h1>Bubble Sort with animation in JS</h1>
       <p>This is an animation for Bubble Sort, wrote in JS.</p>
     </div>
-    <div class="action-bar">
+    <div class="action-bar" id="action-bar">
       <h3>Steps to play an animation of Bubble Sort</h3>
       <ol>
         <li>
@@ -25,10 +25,14 @@
         <li>
           <p>Now, we can play the annimation.</p>
           <div class="actions">
-            <button id="btn-paly">Play</button>
+            <button id="btn-play" disabled>Play</button>
             <button id="btn-pause" disabled>Pause</button>
             <button id="btn-next-round" disabled>Next Round</button>
             <button id="btn-next-step" disabled>Next Step</button>
+          </div>
+          <div class="sort-records-container">
+            <h4><span id="sort-records-title"></span> Sort Steps</h4>
+            <div id="records"></div>
           </div>
         </li>
       </ol>

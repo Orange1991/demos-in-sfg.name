@@ -41,6 +41,29 @@ html, body {
   bottom: 0;
   background-color: #009;
   overflow: hidden;
+  transition: left .5s;
+}
+
+@-webkit-keyframes twinkle,
+@-moz-keyframes twinkle,
+@-o-keyframes twinkle,
+@keyframes twinkle {
+  0% {
+    background-color: blue;
+  }
+  50% {
+    background-color: red;
+  }
+  100% {
+    background-color: blue;
+  }
+}
+
+.anim-col.comparing {
+  -webkit-animation: twinkle .25s infinite;
+     -moz-animation: twinkle .25s infinite;
+       -o-animation: twinkle .25s infinite;
+          animation: twinkle .25s infinite;
 }
 
 .anim-col > p {
