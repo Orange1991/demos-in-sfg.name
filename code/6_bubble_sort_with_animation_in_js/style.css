@@ -40,36 +40,96 @@ html, body {
   position: absolute;
   bottom: 0;
   background-color: #009;
-  overflow: hidden;
   transition: left .5s;
+  text-align: center;
 }
 
-@-webkit-keyframes twinkle,
-@-moz-keyframes twinkle,
-@-o-keyframes twinkle,
+@-webkit-keyframes twinkle {
+  0% { background: #009; }
+  50% { background: #ff0; }
+  100% { background: #009; }
+}
+
+@-moz-keyframes twinkle {
+  0% { background: #009; }
+  50% { background: #ff0; }
+  100% { background: #009; }
+}
+
+@-o-keyframes twinkle {
+  0% { background: #009; }
+  50% { background: #ff0; }
+  100% { background: #009; }
+}
+
 @keyframes twinkle {
-  0% {
-    background-color: blue;
-  }
-  50% {
-    background-color: red;
-  }
-  100% {
-    background-color: blue;
-  }
+  0% { background: #009; }
+  50% { background: #ff0; }
+  100% { background: #009; }
 }
 
 .anim-col.comparing {
-  -webkit-animation: twinkle .25s infinite;
-     -moz-animation: twinkle .25s infinite;
-       -o-animation: twinkle .25s infinite;
-          animation: twinkle .25s infinite;
+  -webkit-animation: twinkle .5s infinite;
+     -moz-animation: twinkle .5s infinite;
+       -o-animation: twinkle .5s infinite;
+          animation: twinkle .5s infinite;
 }
 
-.anim-col > p {
+.anim-col .num {
   margin: 5px auto;
   text-align: center;
-  line-height: 1em;
   color: #fff;
   overflow: hidden;
+}
+
+.anim-col .result-label {
+  position: absolute;
+  top: -1.2em;
+  left: -75%;
+  white-space: nowrap;
+  color: #396;
+  z-index: 1;
+}
+
+.sort-records-container h4 {
+  margin: 0 auto 5px auto;
+  line-height: 1em;
+}
+
+.sort-records-container #records {
+  box-sizing: border-box;
+  height: 150px;
+  padding: 5px;
+  color: #000;
+  background-color: #fff;
+  overflow-y: scroll;
+  transition: scroll
+}
+
+.sort-records-container #records p {
+  line-height: 1em;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.sort-records-container #records p .step-line {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 85%;
+  background-color: #6cf;
+}
+
+.sort-records-container #records p .round-line {
+  display: block;
+  padding: 5px;
+  background-color: #396;
+  color: #fff;
+}
+
+.sort-records-container #records p .symbol {
+  display: inline-block;
+  padding: 1px 5px;
+  margin: auto 3px;
+  border: 1px solid #033;
+  font-size: 85%;
 }

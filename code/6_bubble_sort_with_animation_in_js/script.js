@@ -12,7 +12,7 @@
   var rdoAsc = document.getElementById('rdo-asc');
   var recordTitle = document.getElementById('sort-records-title');
   var records = document.getElementById('records');
-  var actionBar = document.getElementById('action-bar');
+  var sideBar = document.getElementById('side-bar');
 
   var padWidth = screenWidth * .7;
   var padHeigth = screenHeight;
@@ -107,9 +107,7 @@
         }
         console.log('Generated %O', arr);
         isInited = true;
-        var p = document.createElement('p');
-        p.innerText = 'Original array = [' + arr.join(', ') + '].';
-        records.appendChild(p);
+        addRecord('<span class="step-line">Inited</span> array = [' + arr.join(', ') + '].');
       }
     }
   });
@@ -148,12 +146,11 @@
     if (!isInited) {
       return;
     }
-    if (isFinished || totalStep >= totalStepThd) {
-      isFinished = true;
-    } else if (step >= stepThd) {
+    if (step >= stepThd) {
       runRound();
     } else if (shouldPause) {
       nextTimer && clearTimeout(nextTimer);
+      shouldPause = false;
       isRunning = false;
       btnPause.disabled = true;
       btnPlay.disabled = false;
@@ -161,7 +158,11 @@
       btnStep.disabled = false;
     } else {
       var index = step++;
-      sort(index, index + 1, isAsc);
+      if (index === 0) {
+        addRecord('<span class="round-line">Round ' + (round + 1) + '</span>');
+      }
+      ++totalStep;
+      sort(index, index + 1, isAsc, totalStep);
       nextTimer = setTimeout(function() {
         if (mode === MODE.STEP) {
           btnPlay.disabled = false;
@@ -175,47 +176,47 @@
     }
   };
 
-  var runNextRound = function() {
-    if (mode === MODE.ALL) {
-      if (round < roundThd) {
-        ++round;
+  var runRound = function() {
+    if (step >= stepThd) {
+      addRoundResultLabel(round); 
+      ++round;
+      if (round >= roundThd) {
+        if (round === roundThd) {
+          addRoundResultLabel(round);
+          addRecord('<span class="round-line">Finished!</span>');
+        }
+        isFinished = true;
+        btnPause.disabled = true;
+      } else {
         step = 0;
         stepThd = arrSize - round - 1;
-      } else {
-        isFinished = true;
+        runStep();
       }
+    } else {
       runStep();
     }
   };
 
-  var runRound = function() {
-    if (step >= stepThd) {
-      ++round;
-      if (round >= roundThd) {
-        addRecord('Finished');
-        isFinished = true;
-      } else {
-        step = 0;
-        stepThd = arrSize - round - 1;
-        addRecord('Round ' + round);
-        runStep();
-      }
-    } else {
-      if (step === 0) {
-        addRecord('Round ' + round);
-      }
-      runStep();
-    }
+  var addRoundResultLabel = function(round) {
+    var col = colElems[arrSize - round - 1];
+    var elem = document.createElement('span');
+    elem.className = 'result-label';
+    elem.innerText = 'Round ' + (round + 1) + ' result';
+    col.appendChild(elem);
   };
 
   var addRecord = function(text) {
     var p = document.createElement('p');
-    p.innerText = text;
+    p.innerHTML = text;
     records.appendChild(p);
-    records.scrollTop = actionBar.scrollHeight;
+    records.scrollTop = records.scrollHeight;
   };
 
-  var sort = function(index1, index2, isAsc) {
+  var addStepRecord = function(step, index1, index2, num1, num2, symbol, msg) {
+    addRecord('<span class="step-line">Step ' + step + '</span> arr[' + index1 + ']:' + num1 + '<span class="symbol">' + symbol + '</span>' + 'arr[' + index2 + ']:' + num2 + ', ' + msg + '.');
+  };
+
+  var sort = function(index1, index2, isAsc, totalStep) {
     var num1 = arr[index1];
     var num2 = arr[index2];
     var col1 = colElems[index1];
@@ -226,15 +227,14 @@
       col1.classList.remove(cmpClass);
       col2.classList.remove(cmpClass);
       if (num1 === num2) {
-        addRecord('array[' + index1 + ']:' + num1 + '=' + 'array[' + index2 + ']:' + num2 + ', no need to revert');
-      } else if (isAsc && num1 > num2) {
-        addRecord('array[' + index1 + ']:' + num1 + '>' + 'array[' + index2 + ']:' + num2 + ', no revert');
-        revertPos(index1, index2);
-      } else if (!isAsc && num1 < num2) {
-        addRecord('array[' + index1 + ']:' + num1 + '<' + 'array[' + index2 + ']:' + num2 + ', revert');
-        revertPos(index1, index2);
+        addStepRecord(totalStep, index1, index2, num1, num2, '=', 'no need to revert');
       } else {
-        addRecord('array[' + index1 + ']:' + num1 + '<' + 'array[' + index2 + ']:' + num2);
+        var shouldRevert = isAsc && num1 > num2 || !isAsc && num1 < num2;
+        var symbol = num1 > num2 ? '&gt;' : '&lt;';
+        addStepRecord(totalStep, index1, index2, num1, num2, symbol, shouldRevert ? 'revert' : 'should not revert');
+        if (shouldRevert) {
+          revertPos(index1, index2);
+        }
       }
       cmpTimer = null;
     }, ANIM_TWINKLE_DURATION);
@@ -262,7 +262,8 @@
     col.style.width = colWidth + 'px';
     col.style.height = num + 'px';
     col.style.left = pos + 'px';
-    var colNum = document.createElement('p');
+    var colNum = document.createElement('span');
+    colNum.className = 'num';
     colNum.innerText = num;
     col.appendChild(colNum);
     pad.appendChild(col);
