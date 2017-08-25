@@ -37,6 +37,7 @@
   var mode = MODE.ALL;
   var shouldPause;
   var isInited = false;
+  var isPaused;
   var isRunning;
   var isFinished;
   var totalStep;
@@ -46,9 +47,11 @@
   var step;
   var stepThd;
   var nextTimer;
+  var pausedCol;
   var ANIM_SORT_DURATION = 1500;
   var ANIM_TWINKLE_DURATION = 1000;
   var cmpClass = 'comparing';
+  var pausedClass = 'paused';
 
   pad.style.height = screenHeight + 'px';
   pad.style.width = screenWidth * .7 + 'px';
@@ -71,6 +74,8 @@
     shouldPause = false;
     isRunning = false;
     isFinished = false;
+    isPaused = false;
+    pausedCol = null;
     isAsc = !rdoAsc || rdoAsc.checked;
     pad.innerHTML = '';
     recordTitle.innerText = isAsc ? 'Ascending' : 'Descending';
@@ -114,11 +119,9 @@
 
   btnPlay.addEventListener('click', function() {
     if (isInited && !isFinished && !shouldPause && !isRunning) {
-      isRunning = true;
-      btnPause.disabled = false;
-      btnPlay.disabled = true;
-      btnRound.disabled = true;
-      btnStep.disabled = true;
+      clearPauseStatus();
+      setRunningStatus();
+      mode = MODE.ALL;
       runRound();
     }
   });
@@ -134,13 +137,56 @@
   });
 
   btnRound.addEventListener('click', function() {
+    clearPauseStatus();
+    setRunningStatus();
     mode = MODE.ROUND;
     runRound();
   });
 
   btnStep.addEventListener('click', function() {
-    
+    clearPauseStatus();
+    setRunningStatus();
+    mode = MODE.STEP;
+    runStep();
   });
+
+  var setPauseStatus = function() {
+    nextTimer && clearTimeout(nextTimer);
+    isRunning = false;
+    btnPause.disabled = true;
+    btnPlay.disabled = false;
+    btnRound.disabled = false;
+    btnStep.disabled = false;
+    if (totalStep < totalStepThd) {
+      var col = colElems[step];
+      col.classList.add(pausedClass);
+      isPaused = true;
+      pausedCol = col;
+    }
+  };
+
+  var clearPauseStatus = function() {
+    isPaused = false;
+    pausedCol && pausedCol.classList.remove(pausedClass);
+    pausedCol = null;
+  };
+
+  var setRunningStatus = function() {
+    isRunning = true;
+    btnPause.disabled = false;
+    btnPlay.disabled = true;
+    btnRound.disabled = true;
+    btnStep.disabled = true;
+  };
+
+  var setFinishedStatus = function() {
+    nextTimer && clearTimeout(nextTimer);
+    isFinished = true;
+    btnPlay.disabled = true;
+    btnPause.disabled = true;
+    btnRound.disabled = true;
+    btnStep.disabled = true;
+  };
 
   var runStep = function() {
     if (!isInited) {
@@ -149,13 +195,8 @@
     if (step >= stepThd) {
       runRound();
     } else if (shouldPause) {
-      nextTimer && clearTimeout(nextTimer);
       shouldPause = false;
-      isRunning = false;
-      btnPause.disabled = true;
-      btnPlay.disabled = false;
-      btnRound.disabled = false;
-      btnStep.disabled = false;
+      setPauseStatus();
     } else {
       var index = step++;
       if (index === 0) {
@@ -165,35 +206,47 @@
       sort(index, index + 1, isAsc, totalStep);
       nextTimer = setTimeout(function() {
         if (mode === MODE.STEP) {
-          btnPlay.disabled = false;
-          btnPause.disabled = true;
-          btnRound.disabled = false;
-          btnStep.disabled = false;
+          if (step >= stepThd) {
+            runRound(true);
+          }
+          if (totalStep < totalStepThd) {
+            setPauseStatus();
+          }
         } else {
-          runStep();
+          if (mode === MODE.ROUND) {
+            if (step >= stepThd) {
+              runRound(true);
+              if (round < roundThd) {
+                setPauseStatus();
+              }
+            } else {
+              runStep();
+            }
+          } else {
+            runStep();
+          }
         }
       }, ANIM_SORT_DURATION);
     }
   };
 
-  var runRound = function() {
+  var runRound = function(notToRunNextStep) {
     if (step >= stepThd) {
       addRoundResultLabel(round); 
       ++round;
+      step = 0;
+      stepThd = arrSize - round - 1;
       if (round >= roundThd) {
         if (round === roundThd) {
           addRoundResultLabel(round);
           addRecord('<span class="round-line">Finished!</span>');
         }
-        isFinished = true;
-        btnPause.disabled = true;
+        setFinishedStatus();
       } else {
-        step = 0;
-        stepThd = arrSize - round - 1;
-        runStep();
+        !notToRunNextStep && runStep();
       }
     } else {
-      runStep();
+      !notToRunNextStep && runStep();
     }
   };
 

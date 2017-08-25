@@ -75,6 +75,23 @@ html, body {
           animation: twinkle .5s infinite;
 }
 
+.anim-col.paused {
+  background-color: #fc0;
+}
+
+.anim-col.paused .num {
+  color: #000;
+}
+
+.anim-col.paused::before {
+  content: 'paused here';
+  position: absolute;
+  top: -1.2em;
+  left: -40%;
+  white-space: nowrap;
+  color: #fc0;
+}
+
 .anim-col .num {
   margin: 5px auto;
   text-align: center;
